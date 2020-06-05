@@ -6,16 +6,17 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleware } from './auth.middleware';
 
 @Module({
-	imports: [HttpModule, ConfigModule.forRoot({
-		envFilePath: '.development.env',
-	})],
+	imports: [
+		HttpModule,
+		ConfigModule.forRoot({
+			envFilePath: '.development.env',
+		}),
+	],
 	controllers: [AppController],
 	providers: [AppService],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
-		consumer
-		  .apply(AuthMiddleware)
-		  .forRoutes('news');
-	  }
+		consumer.apply(AuthMiddleware).forRoutes('news');
+	}
 }
