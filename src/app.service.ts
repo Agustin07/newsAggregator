@@ -161,7 +161,8 @@ export class AppService {
 
 	handleError(e : any){
 		if (e.hasOwnProperty('response')){
-			return { code : e.response.status, message: e.response.data.message || e.response.data.fault.faultstring };
+			if(e.response.data.hasOwnProperty('fault')) return { code : e.response.status, message: e.response.data.fault.faultstring };
+			return { code : e.response.status, message: e.response.data.message || e.response.data.response.message };
 		}
 		return { code : 400, message: e.message };
 	}
