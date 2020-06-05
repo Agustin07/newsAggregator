@@ -117,7 +117,7 @@ export class AppService {
 	}
 
 	useAPI(req : Request, api : string) : boolean {
-		return ( ( req.query.hasOwnProperty(api) && req.query[api] ) ? true : false );
+		return ( ( req.query.hasOwnProperty(api) && Boolean(JSON.parse(req.query[api] as string)) ) ? true : false );
 	}
 
 	validateOption(req : Request, name : string){

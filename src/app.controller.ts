@@ -12,6 +12,8 @@ export class AppController {
 
 		let resultNews : NewsDto[] = [];
 
+		const auth = Boolean(JSON.parse(req.query.auth as string));
+
 		const isCalled = this.appService.getRequiredAPIs(req);
 		try{
 			if (isCalled.tg){
@@ -19,7 +21,7 @@ export class AppController {
 				resultNews=resultNews.concat(resultNewsTG);
 			}
 	
-			if (isCalled.nyt){
+			if (isCalled.nyt && auth){
 				const resultNewsNYT = await this.appService.getNewsNYT(req, res);
 				resultNews=resultNews.concat(resultNewsNYT)
 			}

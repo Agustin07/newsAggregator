@@ -6,10 +6,18 @@
 - News Aggregator is able to filter from using The Guardian's or The New York Time's API.
 - News Aggregator define a common interface for the responses of the APIS.
 - Server runs on port 3000.
+- On searching over The New York Times' source require a JWT key for authorization!
+
+> *Maybe you could use this:* 
+>```
+>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4IiwibmFtZSI6Im55dGFwaSIsImlhdCI6MTUxNjIzOTAyMn0.YT_l7KUy7QoD7wA7f3GYXQGbyQ8ILNpAe-Mw0Qf08dk
+>```
+
 
 ### Sources:
-[The Guardian API](https://open-platform.theguardian.com/)
-[The New York Times API](https://developer.nytimes.com/)
+- [The Guardian API](https://open-platform.theguardian.com/)
+
+- [The New York Times API](https://developer.nytimes.com/)
 
 
 ### Requirements:
@@ -30,7 +38,7 @@
 ### Endpoint URL:
 
 ```
-localhost:3000/news
+http://localhost:3000/news
 ```
 
 ### Query parameters:
@@ -47,9 +55,14 @@ localhost:3000/news
 
 > *Important:* By default the API Request on both sources! 
 
-**Example :**
+**Examples :**
 
 ```
-localhost:3000/news?q=pizza&oncontent=pineapple&onsection=food&fromdate=01/01/2012&todate=31/12/2012
+http://localhost:3000/news?q=pizza&oncontent=pineapple&onsection=food&fromdate=01/01/2012&todate=31/12/2012
+```
+
+
+```
+http://localhost:3000/news?tg=true
 ```
 
