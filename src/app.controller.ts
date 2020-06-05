@@ -1,6 +1,7 @@
 import { Controller, Get, Res, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request, Response } from 'express'
+import { NewsDto } from './dto/news.dto'
 
 @Controller('news')
 export class AppController {
@@ -8,26 +9,28 @@ export class AppController {
 
 	@Get()
 	async getNews(@Req() req : Request, @Res() res : Response) {
-		
-		
-		const { nytQuery, tgQuery } = this.appService.createRequests(req);
-		//console.log(nytQuery);
-		//console.log(tgQuery);
 
+		let resultNews : NewsDto[] = [];
+
+		const isCalled = this.appService.getRequiredAPIs(req);
 		try{
-			const nytResults = await this.appService.getNewsNYT(nytQuery);
-			const tgResults = await this.appService.getNewsTG(tgQuery);
-
-			//if(this.appService.validateResponseTG(tgResults)) return res.status(404).send(tgResults.data.message);
-
-			let result = this.appService.parseNewsNYT(nytResults.data.response.docs);
-
-			let result2 = this.appService.parseNewsTG(tgResults.data.response.results);
+			if (isCalled.tg){
+				const resultNewsTG = await this.appService.getNewsTG(req, res);
+				resultNews=resultNews.concat(resultNewsTG);
+			}
+	
+			if (isCalled.nyt){
+				const resultNewsNYT = await this.appService.getNewsNYT(req, res);
+				resultNews=resultNews.concat(resultNewsNYT)
+			}
+	
+			return res.status(200).json(resultNews);
+		} catch(e){
+			console.log();
+			const error = this.appService.handleError(e);
+			return res.status(error.code).send(error.message);
 			
-			return res.status(200).json(result.concat(result2));
 		}
-		catch(e){
-			return res.status(e.response.status).send(e.response.data.message || e.response.data.fault.faultstring);
-		}
+		
 	}
 }
