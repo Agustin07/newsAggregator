@@ -10,7 +10,7 @@
 
 > *Maybe you could use this:* 
 >```
->eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4IiwibmFtZSI6Im55dGFwaSIsImlhdCI6MTUxNjIzOTAyMn0.YT_l7KUy7QoD7wA7f3GYXQGbyQ8ILNpAe-Mw0Qf08dk
+>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1IiwibmFtZSI6IndlZWsiLCJpYXQiOjE1MTYyMzkwMjJ9.JkgkM-dFUzy0cVx9NQOd_d3lg_LtAkOWMhsTqNEhG2k
 >```
 
 
